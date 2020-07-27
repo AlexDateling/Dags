@@ -2,9 +2,6 @@ from airflow import DAG
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.python_operator import PythonOperator
 from airflow.contrib.kubernetes.secret import Secret
-from airflow.contrib.kubernetes.volume import Volume
-from airflow.contrib.kubernetes.pod import Resources
-from airflow.contrib.kubernetes.volume_mount import VolumeMount
 from airflow.utils.dates import days_ago
 
 from airflow.models import dag
@@ -38,19 +35,7 @@ dag = DAG(
 # ##### USING ACTUAL SECRETS
 # secrets = []
 # env_vars = []
-volume_mount = VolumeMount('my-volume',
-                            mount_path='/temp/',
-                            sub_path=None,
-                            read_only=False)
 
-volume_config= {
-    'persistentVolumeClaim':
-      {
-        'claimName': 'pvc-shared'
-      }
-    }
-
-volume = Volume(name='my-volume', configs=volume_config)
 
 # #### Tasks #### 
 
