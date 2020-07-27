@@ -66,4 +66,4 @@ dag_test_two = PythonOperator(
                         dag=dag
                         )
 
-# dag_test_one >> dag_test_two
+dag_test_one >> dag_test_two
