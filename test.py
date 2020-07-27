@@ -18,7 +18,6 @@ from datetime import timedelta, datetime
 def write_function():
     print("Test Dag task 2")
     print("obtaining dag details")
-    print(dag.get_run_dates())
 
 # #### Airflow DAG COnfig ####
 default_args = {
@@ -59,7 +58,6 @@ dag_test_one =  DummyOperator(task_id='run_this_first', dag=dag)
 
 # #2. Cash
 dag_test_two = PythonOperator(
-                        # executor_config={"KubernetesExecutor": {"image": "python:3.8"}},
                         provide_context=True,
                         task_id="WriteMongo1",
                         python_callable=write_function,
