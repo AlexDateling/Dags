@@ -80,7 +80,7 @@ dag_test_two = PythonOperator(
                             ]
                         }
                     },
-                    dag=SFTPDAG
+                    dag=dag
                         )
 
 # dag_test_one >> dag_test_two
