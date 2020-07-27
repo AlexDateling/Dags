@@ -61,7 +61,6 @@ dag_test_two = PythonOperator(
                         provide_context=True,
                         task_id="WriteMongo1",
                         python_callable=write_function,
-                        requirements=["pymongo"],
                         get_logs=True,
                         dag=dag
                         )
