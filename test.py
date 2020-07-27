@@ -59,10 +59,28 @@ dag_test_one =  DummyOperator(task_id='run_this_first', dag=dag)
 
 # #2. Cash
 dag_test_two = PythonOperator(
-                        provide_context=True,
-                        task_id="WriteMongo1",
-                        python_callable=write_function,
-                        dag=dag
+                        provide_context=False,
+                    python_callable=write_function,
+                    executor_config={
+                        "KubernetesExecutor": {
+                            "volumes": [
+                                {
+                                "name": "my-volume",
+                                "persistentVolumeClaim":
+                                    {
+                                    "claimName": "pvc-shared"
+                                    }
+                                }
+                            ],
+                            "volume_mounts": [
+                                {
+                                "name": "my-volume",
+                                "mountPath": "/tmp/test"
+                                }      
+                            ]
+                        }
+                    },
+                    dag=SFTPDAG
                         )
 
-dag_test_one >> dag_test_two
+# dag_test_one >> dag_test_two
