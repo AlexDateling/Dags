@@ -59,10 +59,11 @@ dag_test_one =  DummyOperator(task_id='run_this_first', dag=dag)
 
 # #2. Cash
 dag_test_two = PythonOperator(
-                    task_id="run_this_second",
-                    provide_context=False,
-                    python_callable=write_function,
-                    dag=dag
+                        provide_context=False,
+                        task_id="WriteMongo1",
+                        python_callable=write_function,
+                        #requirements=["pymongo"],
+                        dag=dag
                         )
 
 # dag_test_one >> dag_test_two
