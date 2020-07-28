@@ -4,7 +4,7 @@ from airflow.operators.python_operator import PythonOperator
 from airflow.contrib.kubernetes.secret import Secret
 from airflow.utils.dates import days_ago
 
-from airflow.models import dagrun
+from airflow.models.dagrun import DagRun
 
 from datetime import timedelta, datetime
 
@@ -15,8 +15,10 @@ from datetime import timedelta, datetime
 def write_function():
     print("Test Dag task 2")
     print("obtaining dag details")
-    print(dagrun.start_date())
-    # print(dagrun.execution_date)
+    dag = DagRun.get_dag()
+    print(DagRun.start_date())
+    print(DagRun.execution_date)
+    print(dag.get_run_dates())
 
 # #### Airflow DAG COnfig ####
 default_args = {
