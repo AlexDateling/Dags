@@ -15,7 +15,7 @@ from datetime import timedelta, datetime
 def write_function():
     print("Test Dag task 2")
     print("obtaining dag details")
-    print(dagrun.get_run_dates)
+    print(dagrun.start_date())
     # print(dagrun.execution_date)
 
 # #### Airflow DAG COnfig ####
