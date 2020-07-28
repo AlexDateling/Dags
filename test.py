@@ -21,12 +21,12 @@ def write_function():
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
-    'start_date': datetime.now(),
+    'start_date': days_ago(2),
     'email': ['ADateling2@Gmail.com'],
     'email_on_failure': True,
     'email_on_retry': False,
     'retries': 5,
-    'retry_delay': timedelta(minutes=2)
+    'retry_delay': timedelta(minutes=1)
 }
 
 dag = DAG(
