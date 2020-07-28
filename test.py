@@ -16,7 +16,7 @@ def write_function():
     print("Test Dag task 2")
     print("obtaining dag details")
     
-    print(DagRun.start_date())
+    print(DagRun.start_date)
     print(DagRun.execution_date)
 
     # dag = DagRun.get_dag()
