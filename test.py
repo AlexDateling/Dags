@@ -17,6 +17,8 @@ def write_function():
     print("Test Dag task 2")
     print("obtaining dag details")
     dag_run = DagRun()
+    dag= dag_run.get_dag()
+    print(dag.start_date)
     print(dag_run.start_date)
     task_instance = dag_run.get_task_instance(task_id='run_this_first')
     print(task_instance.start_date)
