@@ -16,7 +16,7 @@ from datetime import timedelta, datetime
 def write_function():
     print("Test Dag task 2")
     print("obtaining dag details")
-    print(DagRun.get_task_instance('run_this_first').start_date)
+    print(DagRun.get_task_instance(task_id='run_this_first').start_date)
     # print(DagRun.start_date)
     # print(DagRun.execution_date)
 
