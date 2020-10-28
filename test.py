@@ -4,10 +4,6 @@ from airflow.operators.python_operator import PythonOperator
 from airflow.contrib.kubernetes.secret import Secret
 from airflow.utils.dates import days_ago
 
-from airflow.models.dagrun import DagRun
-from airflow.models.dagrun.DagRun import get_task_instance
-from airflow.models.dag import DAG
-
 from datetime import timedelta, datetime
 import time
 # from airflow.models import Variable
