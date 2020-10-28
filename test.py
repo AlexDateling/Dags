@@ -5,30 +5,17 @@ from airflow.contrib.kubernetes.secret import Secret
 from airflow.utils.dates import days_ago
 
 from airflow.models.dagrun import DagRun
+from airflow.models.dagrun.DagRun import get_task_instance
 from airflow.models.dag import DAG
 
 from datetime import timedelta, datetime
-
+import time
 # from airflow.models import Variable
 
 # ################################################ FUNCTION ################################################
 
 def write_function():
-    print("Test Dag task 2")
-    print("obtaining dag details")
-    dag_run = DagRun()
-    print(dag_run.execution_date)
-    dag= dag_run.get_dag()
-    print(dag.execution_date)
-    print(dag_run.start_date)
-    task_instance = dag_run.get_task_instance(task_id='run_this_first')
-    print(task_instance.start_date)
-    
-    # print(DagRun.start_date)
-    # print(DagRun.execution_date)
-
-    # dag = DagRun.get_dag()
-    # print(dag.get_run_dates())
+    time.sleep(360)
 
 # #### Airflow DAG COnfig ####
 default_args = {
@@ -42,8 +29,9 @@ default_args = {
     'retry_delay': timedelta(minutes=1)
 }
 
+
 dag = DAG(
-    'dag_test', default_args=default_args, schedule_interval='30 15 * * *', dagrun_timeout=timedelta(minutes=60))
+    'dag_test', max_active_runs=1, default_args=default_args, schedule_interval='*/4 * * * *', dagrun_timeout=timedelta(minutes=60))
 
 # ##### USING ACTUAL SECRETS
 # secrets = []
